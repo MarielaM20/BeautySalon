@@ -1,0 +1,144 @@
+<div class="textAbout1">
+    <h3 class="title2">User Info:</h3>
+    <form [formGroup]="form" (ngSubmit)="saveProfile()">
+        <img src="../../../assets/Images/profile.png" alt="default user">
+        <p>First name:
+            <input *ngIf="showEditMode" type="text" formControlName="firstName">
+            <ng-container *ngIf="!showEditMode">
+                {{user.firstName}}
+            </ng-container>
+        </p>
+        <p>Last name:
+            <input *ngIf="showEditMode" type="text" formControlName="lastName">
+            <ng-container *ngIf="!showEditMode">
+                {{user.lastName}}
+            </ng-container>
+        </p>
+        <p>Email:
+            <input *ngIf="showEditMode" type="text" formControlName="email">
+            <ng-container *ngIf="!showEditMode">
+                {{user.email}}
+            </ng-container>
+        </p>
+        <p>Phone:
+            <input *ngIf="showEditMode" type="text" formControlName="phone">
+            <ng-container *ngIf="!showEditMode">
+                {{user.phone}}
+            </ng-container>
+        </p>
+
+        <ng-template #edit>
+            <button class="editBtn" type="submit">Save</button>
+        </ng-template>
+
+        <ng-template #nonEdit>
+            <button class="editBtn" type="button" (click)="toggleEditMode()">Edit</button>
+        </ng-template>
+
+        <ng-container *ngTemplateOutlet="showEditMode ? edit:nonEdit"></ng-container>
+    </form>
+</div>
+
+
+<div class="yours">Your appointments</div>
+<div class="textAbout">
+    <p>If you haven't visited us yet, <strong>book your first appointment:</strong></p>
+</div>
+
+<section class="form1">
+    <div class="container">
+        <h2 class="title2">Make an appointment</h2>
+
+        <form form="ngForm" action="#" method="POST" (ngSubmit)="makeAnAppointmentHandler(form)">
+            <div class="user-details">
+                <div class="input-box">
+                    <label for="date" class="details">Date</label>
+                    <input #dateInput="ngModel" ngModel type="date" name="date" id="date" required>
+
+                    <ng-container *ngIf="dateInput.touched">
+                        <p class="error" *ngIf="dateInput.errors?.['required']">
+                            Date is required!
+                        </p>
+                    </ng-container>
+
+                </div>
+                <div class="input-box">
+                    <label for="hour" class="details">Hour</label>
+                    <input #hourInput="ngModel" ngModel type="time" name="hour" id="hour" required>
+
+                    <ng-container *ngIf="hourInput.touched">
+                        <p class="error" *ngIf="hourInput.errors?.['required']">
+                            Hour is required!
+                        </p>
+                    </ng-container>
+
+                </div>
+                <div class="input-box">
+                    <label for="fName" class="details">First name</label>
+                    <input #fName="ngModel" ngModel type="text" name="fname" id="fName"
+                        placeholder="Enter your first name..." required>
+
+                    <ng-container *ngIf="fName.touched">
+                        <p class="error" *ngIf="fName.errors?.['required']">
+                            First name is required!
+                        </p>
+                    </ng-container>
+
+                </div>
+                <div class="input-box">
+                    <label for="lName" class="details">Last name</label>
+                    <input #lName="ngModel" ngModel type="text" name="lname" id="lName"
+                        placeholder="Enter your last name..." required>
+
+                    <ng-container *ngIf="lName.touched">
+                        <p class="error" *ngIf="lName.errors?.['required']">
+                            Last name is required!
+                        </p>
+                    </ng-container>
+
+                </div>
+                <div class="input-box">
+                    <label for="email" class="details">Email</label>
+                    <input #emailInput="ngModel" ngModel type="email" name="email" id="email"
+                        placeholder="Enter your email..." required [appEmail]="['bg', 'com']">
+
+                    <ng-container *ngIf="emailInput.touched">
+                        <p class="error" *ngIf="emailInput.errors?.['required']">
+                            Email is required!
+                        </p>
+                        <p class="error" *ngIf="emailInput.errors?.['emailValidator']">
+                            Email is not valid!
+                        </p>
+                    </ng-container>
+
+                </div>
+
+                <div class="input-box">
+                    <label for="phone" class="details">Phone</label>
+                    <input #phoneInput="ngModel" ngModel type="tel" name="phone" id="phone"
+                        placeholder="Enter your phone..." required [minlength]="10" [maxlength]="10">
+
+                    <ng-container *ngIf="phoneInput.touched">
+                        <p class="error" *ngIf="phoneInput.errors?.['required']">
+                            Phone is required!
+                        </p>
+                        <p class="error" *ngIf="phoneInput.errors?.['minlength']">
+                            Invalid phone number!
+                        </p>
+                    </ng-container>
+
+                </div>
+
+            </div>
+
+            <div class="input-box">
+                <p>Expect a confirmation of your chosen date and time on the specified email.</p>
+                <em>The salon team <strong>"Style"</strong> thank you for your trust!</em>
+            </div>
+
+            <div class="button">
+                <input [disabled]="form.invalid" type="submit" value="Confirm">
+            </div>
+        </form>
+    </div>
+</section>

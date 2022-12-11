@@ -1,0 +1,48 @@
+<section class="form1">
+    <div class="container">
+        <h2 class="title2">Login</h2>
+
+        <form #form="ngForm" action="#" method="POST" (ngSubmit)="loginHandler(form)">
+            <div class="user-details">
+                <div class="input-box">
+                    <label for="email" class="details">Email</label>
+                    <input #emailInput="ngModel" ngModel type="email" name="email" id="email"
+                        placeholder="Enter your email..." required [appEmail]="['bg', 'com']">
+
+                    <ng-container *ngIf="emailInput.touched">
+                        <p class="error" *ngIf="emailInput.errors?.['required']">
+                            Email is required!
+                        </p>
+                        <p class="error" *ngIf="emailInput.errors?.['emailValidator']">
+                            Email is not valid!
+                        </p>
+                    </ng-container>
+
+                </div>
+                <div class="input-box">
+                    <label for="password" class="details">Password</label>
+                    <input #passwordInput="ngModel" ngModel type="password" name="password" id="password" placeholder="Enter your password..."
+                        required [minlength]="6">
+
+                    <ng-container *ngIf="passwordInput.touched">
+                        <p class="error" *ngIf="passwordInput.errors?.['required']">
+                            Password is required!
+                        </p>
+                        <p class="error" *ngIf="passwordInput.errors?.['minlength']">
+                            Password must be at least 6 characters!
+                        </p>
+                    </ng-container>
+
+                </div>
+            </div>
+
+            <div class="input-box1">
+                <p>You still haven't an account? <a routerLink="/auth/register">Register</a></p>
+            </div>
+
+            <div class="button">
+                <input [disabled]="form.invalid" type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</section>
