@@ -94,6 +94,7 @@
     position: relative;
     background-color: #dad4e9;
     font-style: italic;
+    font-size: 20px;
     max-width: 70%;
     text-decoration: none;
     color: #000;
@@ -121,6 +122,10 @@
     background-color: #9590a2;
     color: #fff;
     cursor: pointer;
+}
+
+a{
+    text-decoration: none;
 }
 
 .clock {
@@ -187,7 +192,7 @@ hr {
 
 h4 {
     color: #7a6426;
-    font-size: 28px;
+    font-size: 35px;
     font-family: 'Playfair Display', "Times New Roman", Times, Baskerville, Georgia, serif;
     font-weight: 100;
     text-transform: uppercase;
