@@ -26,7 +26,7 @@ export class LoginComponent {
 
     const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
 
-    this.router.navigateByUrl(returnUrl);
+    this.router.navigate([returnUrl]);
 
   }
 
