@@ -27,7 +27,7 @@ export class ProfileComponent {
       lastName,
       email,
       phone
-    }
+    };
   }
 
   form = this.fb.group({
