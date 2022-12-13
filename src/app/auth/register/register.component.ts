@@ -24,9 +24,9 @@ export class RegisterComponent {
       return;
     } else {
 
-      // this.authService.user = {
-      //   firstName: 'Mariela'
-      // } as any;
+      this.authService.user = {
+        firstName: 'Mariela'
+      } as any;
 
       const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
 
