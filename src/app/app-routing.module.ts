@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { MainComponent } from './main/main.component';
+import { AuthActivate } from './shared/guards/auth.activate';
 import { AppointmentMessageComponent } from './views/appointment-message/appointment-message.component';
 import { ContactsComponent } from './views/contacts/contacts.component';
 import { HaircoloringComponent } from './views/haircoloring/haircoloring.component';
@@ -21,6 +22,7 @@ export const routes: Routes = [
     {
         path: 'views/manicure',
         component: ManicureComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Manicure Page',
             loginRequired: true
@@ -29,6 +31,7 @@ export const routes: Routes = [
     {
         path: 'views/makeup',
         component: MakeupComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Makeup Page',
             loginRequired: true
@@ -37,6 +40,7 @@ export const routes: Routes = [
     {
         path: 'views/haircut',
         component: HaircutComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Haircut Page',
             loginRequired: true
@@ -45,6 +49,7 @@ export const routes: Routes = [
     {
         path: 'views/haircoloring',
         component: HaircoloringComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Haircoloring Page',
             loginRequired: true
@@ -53,6 +58,7 @@ export const routes: Routes = [
     {
         path: 'views/hairstyles',
         component: HairstylesComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Hairstyles Page',
             loginRequired: true
@@ -61,6 +67,7 @@ export const routes: Routes = [
     {
         path: 'views/portfolio',
         component: PortfolioComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Portfolio'
         }
@@ -68,6 +75,7 @@ export const routes: Routes = [
     {
         path: 'views/contacts',
         component: ContactsComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Contact us'
         }
@@ -75,6 +83,7 @@ export const routes: Routes = [
     {
         path: 'views/appointmentMessage',
         component: AppointmentMessageComponent,
+        canActivate: [AuthActivate],
         data: {
             title: 'Appointment made',
             loginRequired: true
