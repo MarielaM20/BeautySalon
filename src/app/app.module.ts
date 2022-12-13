@@ -10,7 +10,6 @@ import { MainComponent } from './main/main.component';
 import { ViewsModule } from './views/views.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AngularFireModule} from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 
@@ -28,7 +27,7 @@ import { environment } from 'src/environments/environment';
     CoreModule,
     SharedModule,
     ViewsModule,
-    FontAwesomeModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
