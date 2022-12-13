@@ -18,5 +18,4 @@ export class MainComponent {
     this.isLoggedIn = this.authService.isLoggedIn;
   }
   
-
 }
