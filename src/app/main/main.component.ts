@@ -10,7 +10,6 @@ export class MainComponent {
 
   isLoggedIn = false;
 
-
   constructor(private authService: AuthService) {
 
   }
