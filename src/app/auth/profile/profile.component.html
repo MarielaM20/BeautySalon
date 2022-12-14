@@ -1,6 +1,6 @@
 <div class="textAbout1">
     <h3 class="title2">User Info:</h3>
-    <form [formGroup]="form" (ngSubmit)="saveProfile()">
+    <form [formGroup]="formData" (ngSubmit)="saveProfile()">
         <img src="../../../assets/Images/profile.png" alt="default user">
         <p>First name:
             <input *ngIf="showEditMode" type="text" formControlName="firstName">
@@ -49,64 +49,65 @@
     <div class="container">
         <h2 class="title2">Make an appointment</h2>
 
-        <form form="ngForm" action="#" method="POST" (ngSubmit)="makeAnAppointmentHandler(form)">
+        <form [formGroup]="formAppointment" action="#" method="POST"
+            (ngSubmit)="makeAnAppointmentHandler(formAppointment)">
             <div class="user-details">
                 <div class="input-box">
-                    <label for="date" class="details">Date</label>
-                    <input #dateInput="ngModel" ngModel type="date" name="date" id="date" required>
-
-                    <ng-container *ngIf="dateInput.touched">
-                        <p class="error" *ngIf="dateInput.errors?.['required']">
-                            Date is required!
-                        </p>
-                    </ng-container>
-
-                </div>
-                <div class="input-box">
-                    <label for="hour" class="details">Hour</label>
-                    <input #hourInput="ngModel" ngModel type="time" name="hour" id="hour" required>
-
-                    <ng-container *ngIf="hourInput.touched">
-                        <p class="error" *ngIf="hourInput.errors?.['required']">
-                            Hour is required!
-                        </p>
-                    </ng-container>
+                    <p class="details">Date:</p>
+                    <p>
+                        <input type="date" formControlName="date">
+                        <ng-container *ngIf="formAppointment.get('date')?.touched">
+                            <p *ngIf="formAppointment.get('date')?.errors?.['required']">
+                                Date is required!
+                            </p>
+                        </ng-container>
+                    </p>
 
                 </div>
                 <div class="input-box">
-                    <label for="fName" class="details">First name</label>
-                    <input #fName="ngModel" ngModel type="text" name="fname" id="fName"
-                        placeholder="Enter your first name..." required>
-
-                    <ng-container *ngIf="fName.touched">
-                        <p class="error" *ngIf="fName.errors?.['required']">
-                            First name is required!
-                        </p>
-                    </ng-container>
-
-                </div>
-                <div class="input-box">
-                    <label for="lName" class="details">Last name</label>
-                    <input #lName="ngModel" ngModel type="text" name="lname" id="lName"
-                        placeholder="Enter your last name..." required>
-
-                    <ng-container *ngIf="lName.touched">
-                        <p class="error" *ngIf="lName.errors?.['required']">
-                            Last name is required!
-                        </p>
-                    </ng-container>
+                    <p class="details">Hour:</p>
+                    <p>
+                        <input type="text" formControlName="hour">
+                        <ng-container *ngIf="formAppointment.get('hour')?.touched">
+                            <p *ngIf="formAppointment.get('hour')?.errors?.['required']">
+                                Hour is required!
+                            </p>
+                        </ng-container>
+                    </p>
 
                 </div>
                 <div class="input-box">
-                    <label for="email" class="details">Email</label>
-                    <input #emailInput="ngModel" ngModel type="email" name="email" id="email"
-                        placeholder="Enter your email..." required [appEmail]="['bg', 'com']">
+                    <p class="details">First name:</p>
+                    <p>
+                        <input type="text" formControlName="fName">
+                        <ng-container *ngIf="formAppointment.get('fName')?.touched">
+                            <p *ngIf="formAppointment.get('fName')?.errors?.['required']">
+                                First name is required!
+                            </p>
+                        </ng-container>
+                    </p>
 
-                    <ng-container *ngIf="emailInput.touched">
-                        <p class="error" *ngIf="emailInput.errors?.['required']">
+                </div>
+                <div class="input-box">
+                    <p class="details">Last name:</p>
+                    <p>
+                        <input type="text" formControlName="lName">
+                        <ng-container *ngIf="formAppointment.get('lName')?.touched">
+                            <p *ngIf="formAppointment.get('lName')?.errors?.['required']">
+                                Last name is required!
+                            </p>
+                        </ng-container>
+                    </p>
+
+                </div>
+                <div class="input-box">
+                    <p class="details">Email:</p>
+                    <input type="text" formControlName="email">
+                    <ng-container *ngIf="formAppointment.get('email')?.touched">
+                        <p class="error" *ngIf="formAppointment.get('email')?.errors?.['required']">
                             Email is required!
                         </p>
-                        <p class="error" *ngIf="emailInput.errors?.['emailValidator']">
+                        <p class="error" *ngIf="formAppointment.get('email')?.errors?.['emailValidator']">
                             Email is not valid!
                         </p>
                     </ng-container>
@@ -114,16 +115,14 @@
                 </div>
 
                 <div class="input-box">
-                    <label for="phone" class="details">Phone</label>
-                    <input #phoneInput="ngModel" ngModel type="tel" name="phone" id="phone"
-                        placeholder="Enter your phone..." required [minlength]="10" [maxlength]="10">
-
-                    <ng-container *ngIf="phoneInput.touched">
-                        <p class="error" *ngIf="phoneInput.errors?.['required']">
+                    <p class="details">Phone:</p>
+                    <input type="text" formControlName="phone">
+                    <ng-container *ngIf="formAppointment.get('phone')?.touched">
+                        <p *ngIf="formAppointment.get('phone')?.errors?.['required']" class="error">
                             Phone is required!
                         </p>
-                        <p class="error" *ngIf="phoneInput.errors?.['minlength']">
-                            Invalid phone number!
+                        <p *ngIf="formAppointment.get('phone')?.errors?.['minlength']" class="error" >
+                            Invalid phone!
                         </p>
                     </ng-container>
 
@@ -137,7 +136,7 @@
             </div>
 
             <div class="button">
-                <input [disabled]="form.invalid" type="submit" value="Confirm">
+                <input [disabled]="formAppointment.invalid" type="submit" value="Confirm">
             </div>
         </form>
     </div>
