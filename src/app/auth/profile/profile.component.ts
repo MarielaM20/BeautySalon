@@ -12,11 +12,27 @@ import { AuthService } from '../auth.service';
 export class ProfileComponent {
 
   makeAnAppointmentHandler(formAppointment: FormGroup): void {
-    if (formAppointment.invalid) {
+    if (this.formAppointment.invalid) {
       return;
     }
+
+    const { firstName, lastName, email, phone } = this.formData.value;
+    
+    this.authService.user = {
+      firstName, lastName, email, phone
+    } as any;
+
     this.router.navigate(['/views/appointmentMessage']);
   }
+
+  formAppointment = this.fb.group({
+    date:['', [Validators.required]],
+    hour:['', [Validators.required]],
+    fName:['', [Validators.required]],
+    lName:['', [Validators.required]],
+    email:['', [Validators.required]],
+    phone:['', [Validators.required]]
+  })
 
   showEditMode = false;
 
@@ -30,7 +46,7 @@ export class ProfileComponent {
     };
   }
 
-  form = this.fb.group({
+  formData = this.fb.group({
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     email: ['', [Validators.required, emailValidator(['bg', 'com'])]],
@@ -38,21 +54,23 @@ export class ProfileComponent {
   })
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private router: Router, private authService: AuthService) {
-    this.form.setValue(this.user);
+    this.formData.setValue(this.user);
   }
   toggleEditMode(): void {
     this.showEditMode = !this.showEditMode;
   }
 
   saveProfile(): void {
-    if (this.form.invalid) {
+    if (this.formData.invalid) {
       return;
     }
 
-    const { firstName, lastName, email, phone } = this.form.value;
+    const { firstName, lastName, email, phone } = this.formData.value;
+    
     this.authService.user = {
       firstName, lastName, email, phone
     } as any;
+    
     this.toggleEditMode();
   }
 
