@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { emailValidator } from 'src/app/shared/validators';
+import { sameValueGroupValidator } from 'src/app/shared/validators/same-value-group-validator';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,28 +12,43 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent {
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private authService: AuthService) {
+  form = this.fb.group({
+    firstName: ['', [Validators.required, Validators.minLength(5)]],
+    lastName: ['', [Validators.required, Validators.minLength(5)]],
+    email: ['', [Validators.required, emailValidator(['bg', 'com'])]],
+    ext: [''],
+    tel: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    pass: this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      rePassword: ['', [Validators.required, Validators.minLength(5)]]
+    }, {
+      validators: [sameValueGroupValidator('password', 'rePassword')]
+    })
+  });
+
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private router: Router, private authService: AuthService) {
 
   }
 
-  registerHandler(form: NgForm): void {
+  registerHandler(): void {
 
-    if (form.invalid) {
+    if (this.form.invalid) {
       return;
     }
-  
-    if (form.value.password != form.value.repass) {
-      return;
-    } else {
 
-      this.authService.user = {
-        firstName: 'Mariela'
-      } as any;
 
-      const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+    // this.authService.user = {
+    //   firstName: 'Mariela'
+    // } as any;
 
-      this.router.navigate([returnUrl]);
-    }
+    const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+
+    this.router.navigate([returnUrl]);
+
+    const { firstName, lastName, email, tel, pass: { password, rePassword } = {} } = this.form.value;
+    this.authService.register(firstName!, lastName!, email!, tel!, password!, rePassword!)
+      .subscribe(res => console.log(res));
+
 
   }
 
