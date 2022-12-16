@@ -58,6 +58,14 @@
     opacity: 1;
 }
 
+.error{
+    color: red;
+    overflow-wrap: break-word;
+}
+
+#service{
+    padding: 15px 80px;
+}
 
 .form1{
     font-family: 'Poppins', sans-serif;
@@ -123,6 +131,10 @@ form .user-details .input-box{
 .input-box a{
     color: #672083;
     overflow-wrap: break-word;
+}
+
+.input-box em{
+    margin: auto 120px;
 }
 
 .input-box a:hover{
