@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivationStart, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 
+import { AngularFireDatabase } from "angularfire2/database";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,9 +13,12 @@ import { filter, map } from 'rxjs';
 export class AppComponent {
   title = 'BeautySalon';
 
+  //users: any[];
+
   constructor(
     private router: Router,
-    private pageTitle: Title
+    private pageTitle: Title,
+    db: AngularFireDatabase
   ) {
     this.router.events.pipe(
       filter((e): e is ActivationStart => e instanceof ActivationStart),
@@ -22,6 +27,8 @@ export class AppComponent {
     ).subscribe((pageTitle) => {
       this.pageTitle.setTitle(pageTitle);
     });
+
+    //db.list('/users')
   }
 }
 
