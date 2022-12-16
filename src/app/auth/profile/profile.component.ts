@@ -17,7 +17,7 @@ export class ProfileComponent {
     }
 
     const { firstName, lastName, email, phone } = this.formData.value;
-    
+
     this.authService.user = {
       firstName, lastName, email, phone
     } as any;
@@ -26,12 +26,12 @@ export class ProfileComponent {
   }
 
   formAppointment = this.fb.group({
-    date:['', [Validators.required]],
-    hour:['', [Validators.required]],
-    fName:['', [Validators.required]],
-    lName:['', [Validators.required]],
-    email:['', [Validators.required]],
-    phone:['', [Validators.required]]
+    date: ['', [Validators.required]],
+    hour: ['', [Validators.required]],
+    fName: ['', [Validators.required]],
+    lName: ['', [Validators.required]],
+    service: ['', [Validators.required]],
+    email: ['', [Validators.required, emailValidator(['bg', 'com'])]]
   })
 
   showEditMode = false;
@@ -66,11 +66,11 @@ export class ProfileComponent {
     }
 
     const { firstName, lastName, email, phone } = this.formData.value;
-    
+
     this.authService.user = {
       firstName, lastName, email, phone
     } as any;
-    
+
     this.toggleEditMode();
   }
 
