@@ -2,7 +2,7 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HTT
 import { Injectable, Provider } from "@angular/core";
 import { catchError, EMPTY, Observable, of, tap, throwError } from "rxjs";
 import { environment } from '../environments/environment';
-const apiURL = environment.apiURL;
+//const apiURL = environment.apiURL;
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -11,7 +11,7 @@ constructor(){}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.startsWith('/api')) {
       req = req.clone({
-        url: req.url.replace('/api', apiURL)
+        //url: req.url.replace('/api', apiURL)
       });
     }
     return next.handle(req);
