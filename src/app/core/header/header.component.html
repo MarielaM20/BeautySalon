@@ -1,6 +1,6 @@
-<div *ngIf="isLoggedIn">
+<div>
     <div class="dream">
         <img src="../../assets/Images/salon1.jpg" class="salonImg">
-        <p class="middle"><i>WELCOME</i></p>
+        <p *ngIf="isLoggedIn" class="middle"><i>WELCOME</i></p>
     </div>
 </div>

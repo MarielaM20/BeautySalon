@@ -10,10 +10,10 @@ export class AuthService {
   //user: IUser | null = null;
 
   user: IUser | null = {
-    firstName: "m",
-    lastName: "m",
-    email: "m",
-    phone: "m",
+    firstName: "Mariela",
+    lastName: "Mircheva",
+    email: "m.mircheva02@gmail.com",
+    phone: "0888123456",
   };
 
   get isLoggedIn() {
