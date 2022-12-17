@@ -44,18 +44,14 @@
                 </div>
 
                 <div class="input-box">
-                    <label for="tel">Phone:</label>
-                    <select name="select-tel" id="select-tel" formControlName="ext">
-                        <option value="00359">+359</option>
-                        <option value="00358">+358</option>
-                    </select>
-                    <input type="text" formControlName="tel" id="tel" placeholder="885 888 888">
+                    <label for="phone">Phone:</label>
+                    <input type="text" formControlName="phone" id="phone" placeholder="0885 888 888">
                     
-                    <ng-container *ngIf="form.get('tel')?.touched">
-                        <p class="error" *ngIf="form.get('tel')?.errors?.['required']">
+                    <ng-container *ngIf="form.get('phone')?.touched">
+                        <p class="error" *ngIf="form.get('phone')?.errors?.['required']">
                             Phone is required!
                         </p>
-                        <p class="error" *ngIf="form.get('tel')?.errors?.['minlength'] || form.get('tel')?.errors?.['maxlength']">
+                        <p class="error" *ngIf="form.get('phone')?.errors?.['minlength'] || form.get('phone')?.errors?.['maxlength']">
                             Invalid phone number!
                         </p>
                     </ng-container>
