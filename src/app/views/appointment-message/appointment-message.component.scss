@@ -29,7 +29,7 @@
 .input-box1{
     text-align: center;
     font-size: 26px;
-    width: 20%;
+    width: 30%;
     border-radius: 20px;
     padding: 10px 30px 10px 30px;
     margin: 70px auto;
@@ -39,7 +39,10 @@
 
 .input-box1:hover a{
     color: rgba(146, 105, 157, 0.65);
+}
 
+.input-box1 a{
+    text-decoration: none;
 }
 
 .textAbout {
