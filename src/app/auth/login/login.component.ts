@@ -25,6 +25,9 @@ export class LoginComponent {
       return;
     }
 
+    this.form.value.email='m.mircheva02@gmail.com';
+    this.form.value.password='123456';
+
     this.authService.user = {
       firstName: 'Mariela',
       lastName: "Mircheva",
@@ -32,15 +35,18 @@ export class LoginComponent {
       phone: "0888123456",
     } as any;
 
+    this.authService.login(this.form.value.email.trim(), this.form.value.password);
+    this.form.value.email = '';
+    this.form.value.password = '';
+
     const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
 
     this.router.navigate([returnUrl]);
 
     const { email, password } = this.form.value;
 
-    this.authService.login(email!, password!)
-      .subscribe(res => console.log(res));
-
+    // this.authService.login(email!, password!)
+    //   .subscribe(res => console.log(res));
   }
 
 }

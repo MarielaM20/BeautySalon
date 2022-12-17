@@ -28,8 +28,6 @@ export class ProfileComponent {
   formAppointment = this.fb.group({
     date: ['', [Validators.required]],
     hour: ['', [Validators.required]],
-    fName: ['', [Validators.required]],
-    lName: ['', [Validators.required]],
     service: ['', [Validators.required]],
     email: ['', [Validators.required, emailValidator(['bg', 'com'])]]
   })

@@ -58,17 +58,15 @@
 
 
                 </div>
-                <ng-container formGroupName="pass">
-
                     <div class="input-box">
                         <label for="password">Password:</label>
                         <input type="password" formControlName="password" id="password" placeholder="*****">
 
-                        <ng-container *ngIf="form.get('pass')?.get('password')?.touched">
-                            <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['required']">
+                        <ng-container *ngIf="form.get('password')?.touched">
+                            <p class="error" *ngIf="form.get('password')?.errors?.['required']">
                                 Password is required!
                             </p>
-                            <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['minlength']">
+                            <p class="error" *ngIf="form.get('password')?.errors?.['minlength']">
                                 Password must be at least 5 characters!
                             </p>
                         </ng-container>
@@ -78,11 +76,11 @@
                         <label for="rePassword">Repeat Password:</label>
                         <input type="password" formControlName="rePassword" id="rePassword" placeholder="*****">
 
-                        <ng-container *ngIf="form.get('pass')?.get('rePassword')?.touched">
-                            <p class="error" *ngIf="form.get('pass')?.get('rePassword')?.errors?.['required']">
+                        <ng-container *ngIf="form.get('rePassword')?.touched">
+                            <p class="error" *ngIf="form.get('rePassword')?.errors?.['required']">
                                 Password is required!
                             </p>
-                            <p class="error" *ngIf="form.get('pass')?.get('rePassword')?.errors?.['minlength']">
+                            <p class="error" *ngIf="form.get('rePassword')?.errors?.['minlength']">
                                 Password must be at least 5 characters!
                             </p>
                         </ng-container>
@@ -91,10 +89,8 @@
                     </div>
                     <p class="error1"
                         *ngIf="form.get('pass')?.errors?.['sameValueGroupValidator'] && form.get('pass')?.get('rePassword')?.touched">
-                        Passwords don't match!</p>
-
-                </ng-container>
-
+                        Passwords don't match!
+                    </p>
             </div>
 
             <div class="input-box1">

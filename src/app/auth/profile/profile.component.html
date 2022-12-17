@@ -1,5 +1,5 @@
 <div class="textAbout1">
-    <h3 class="title2">User Info:</h3>
+    <h3 class="title2">Your profile:</h3>
     <form [formGroup]="formData" (ngSubmit)="saveProfile()">
         <img src="../../../assets/Images/profile.png" alt="default user">
         <p>First name:
@@ -71,30 +71,6 @@
                         <ng-container *ngIf="formAppointment.get('hour')?.touched">
                             <p *ngIf="formAppointment.get('hour')?.errors?.['required']">
                                 Hour is required!
-                            </p>
-                        </ng-container>
-                    </p>
-
-                </div>
-                <div class="input-box">
-                    <p class="details">First name:</p>
-                    <p class="error">
-                        <input type="text" formControlName="fName" placeholder="Enter your first name...">
-                        <ng-container *ngIf="formAppointment.get('fName')?.touched">
-                            <p *ngIf="formAppointment.get('fName')?.errors?.['required']">
-                                First name is required!
-                            </p>
-                        </ng-container>
-                    </p>
-
-                </div>
-                <div class="input-box">
-                    <p class="details">Last name:</p>
-                    <p class="error">
-                        <input type="text" formControlName="lName" placeholder="Enter your last name...">
-                        <ng-container *ngIf="formAppointment.get('lName')?.touched">
-                            <p *ngIf="formAppointment.get('lName')?.errors?.['required']">
-                                Last name is required!
                             </p>
                         </ng-container>
                     </p>

@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-//import { AngularFireModule } from "angularfire2";
-//import { AngularFireDatabaseModule } from "angularfire2/database";
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -26,8 +26,8 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule,
     FormsModule,
     BrowserModule,
-    //AngularFireModule.initializeApp(environment.firebase),
-    //AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     CoreModule,
     HttpClientModule,
     SharedModule,

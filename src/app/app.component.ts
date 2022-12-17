@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivationStart, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,7 +17,8 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private pageTitle: Title
+    private pageTitle: Title,
+    private store: AngularFirestore
   ) {
     this.router.events.pipe(
       filter((e): e is ActivationStart => e instanceof ActivationStart),
