@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { emailValidator } from 'src/app/shared/validators';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,23 +11,35 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private authService: AuthService) {
+  form = this.fb.group({
+    email: ['', [Validators.required, emailValidator(['bg', 'com'])]],
+    password: ['', [Validators.required, Validators.minLength(5)]]
+  });
 
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private router: Router, private authService: AuthService) {
   }
 
-  loginHandler(form: NgForm): void {
+  loginHandler(): void {
 
-    if(form.invalid){
+    if (this.form.invalid) {
       return;
     }
 
-    // this.authService.user = {
-    //   firstName: 'Mariela'
-    // } as any;
+    this.authService.user = {
+      firstName: 'Mariela',
+      lastName: "Mircheva",
+      email: "m.mircheva02@gmail.com",
+      phone: "0888123456",
+    } as any;
 
     const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
 
     this.router.navigate([returnUrl]);
+
+    const { email, password } = this.form.value;
+
+    this.authService.login(email!, password!)
+      .subscribe(res => console.log(res));
 
   }
 

@@ -2,37 +2,35 @@
     <div class="container">
         <h2 class="title2">Login</h2>
 
-        <form #form="ngForm" (ngSubmit)="loginHandler(form)">
+        <form [formGroup]="form" (ngSubmit)="loginHandler()">
             <div class="user-details">
                 <div class="input-box">
-                    <label for="email" class="details">Email</label>
-                    <input #emailInput="ngModel" ngModel type="email" name="email" id="email"
-                        placeholder="Enter your email..." required [appEmail]="['bg', 'com']">
+                    <label for="email">Email:</label>
+                    <input type="email" formControlName="email" id="email" placeholder="Enter your email...">
 
-                    <ng-container *ngIf="emailInput.touched">
-                        <p class="error" *ngIf="emailInput.errors?.['required']">
+                    <ng-container *ngIf="form.get('email')?.touched">
+                        <p class="error" *ngIf="form.get('email')?.errors?.['required']">
                             Email is required!
                         </p>
-                        <p class="error" *ngIf="emailInput.errors?.['emailValidator']">
+                        <p class="error" *ngIf="form.get('email')?.errors?.['emailValidator']">
                             Email is not valid!
                         </p>
                     </ng-container>
 
                 </div>
-                <div class="input-box">
-                    <label for="password" class="details">Password</label>
-                    <input #passwordInput="ngModel" ngModel type="password" name="password" id="password" placeholder="Enter your password..."
-                        required [minlength]="6">
 
-                    <ng-container *ngIf="passwordInput.touched">
-                        <p class="error" *ngIf="passwordInput.errors?.['required']">
+                <div class="input-box">
+                    <label for="password">Password:</label>
+                    <input type="password" formControlName="password" id="password" placeholder="*****">
+
+                    <ng-container *ngIf="form.get('pass')?.get('password')?.touched">
+                        <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['required']">
                             Password is required!
                         </p>
-                        <p class="error" *ngIf="passwordInput.errors?.['minlength']">
-                            Password must be at least 6 characters!
+                        <p class="error" *ngIf="form.get('pass')?.get('password')?.errors?.['minlength']">
+                            Password must be at least 5 characters!
                         </p>
                     </ng-container>
-
                 </div>
             </div>
 

@@ -16,8 +16,7 @@ export class RegisterComponent {
     firstName: ['', [Validators.required, Validators.minLength(5)]],
     lastName: ['', [Validators.required, Validators.minLength(5)]],
     email: ['', [Validators.required, emailValidator(['bg', 'com'])]],
-    ext: [''],
-    tel: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
     pass: this.fb.group({
       password: ['', [Validators.required, Validators.minLength(5)]],
       rePassword: ['', [Validators.required, Validators.minLength(5)]]
@@ -36,17 +35,19 @@ export class RegisterComponent {
       return;
     }
 
-
-    // this.authService.user = {
-    //   firstName: 'Mariela'
-    // } as any;
+    this.authService.user = {
+      firstName: 'Mariela',
+      lastName: "Mircheva",
+      email: "m.mircheva02@gmail.com",
+      phone: "0888123456",
+    } as any;  
 
     const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
 
     this.router.navigate([returnUrl]);
 
-    const { firstName, lastName, email, tel, pass: { password, rePassword } = {} } = this.form.value;
-    this.authService.register(firstName!, lastName!, email!, tel!, password!, rePassword!)
+    const { firstName, lastName, email, phone, pass: { password, rePassword } = {} } = this.form.value;
+    this.authService.register(firstName!, lastName!, email!, phone!, password!, rePassword!)
       .subscribe(res => console.log(res));
 
 
